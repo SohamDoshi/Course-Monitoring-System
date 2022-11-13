@@ -3,7 +3,6 @@ package com.CMS.home;
 import java.util.Scanner;
 
 import com.CMS.colors.ConsoleColor;
-import com.CMS.dao.AdminDao;
 import com.CMS.dao.AdminDaoImpl;
 
 public class Home {
@@ -26,7 +25,6 @@ public class Home {
 		
 		int option = s.nextInt();
 		
-		//AdminDao dao = new AdminDaoImpl();
 		
 		
 		if(option == 1)new AdminDaoImpl().login();

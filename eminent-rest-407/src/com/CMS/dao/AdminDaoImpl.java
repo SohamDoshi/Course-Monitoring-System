@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.CMS.colors.ConsoleColor;
@@ -22,7 +23,7 @@ public class AdminDaoImpl implements AdminDao{
 		Scanner s = new Scanner(System.in);
 		
 		System.out.println("===============================");
-		System.out.println(ConsoleColor.ANSI_RED_BACKGROUND+"***** Administrator Login *****"+ConsoleColor.ANSI_RESET);
+		System.out.println(ConsoleColor.ANSI_PURPLE_BACKGROUND+" ***** Administrator Login ***** "+ConsoleColor.ANSI_RESET);
 		System.out.println("===============================");
 		System.out.println();
 		System.out.println("Enter Username :");
@@ -45,12 +46,12 @@ public class AdminDaoImpl implements AdminDao{
 			String u= rs.getString("username");
 			//String p= rs.getString("password");
 			System.out.println();
-			System.out.println("Welcome Back "+u);
+			System.out.println(ConsoleColor.ANSI_GREEN+" *** Welcome Back "+u+" *** "+ConsoleColor.ANSI_RESET);
 			AdminDashbord();
 			
 			
 		}else
-			System.out.println("Invaild Username or Password");
+			System.out.println(ConsoleColor.ANSI_RED+"Invaild Username or Password"+ConsoleColor.ANSI_RESET);
 			login();
 		
 		
@@ -67,20 +68,42 @@ public class AdminDaoImpl implements AdminDao{
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("===============================");
-		System.out.println(ConsoleColor.ANSI_YELLOW_BACKGROUND+"***** Admin Dashborad *****"+ConsoleColor.ANSI_RESET);
+		System.out.println(ConsoleColor.ANSI_PURPLE_BACKGROUND+" ***** Admin Dashborad ***** "+ConsoleColor.ANSI_RESET);
 		System.out.println("===============================");
+		System.out.println();
+		System.out.println(ConsoleColor.ANSI_GREEN_BACKGROUND+" Course "+ConsoleColor.ANSI_RESET);
 		System.out.println("1. Insert new Course");
 		System.out.println("2. Update Course");
-		System.out.println("3. LogOut");
-		System.out.println("Enter Option no. :");
+		System.out.println("3. View all Courses");
+		System.out.println();
+		System.out.println(ConsoleColor.ANSI_GREEN_BACKGROUND+" Batch "+ConsoleColor.ANSI_RESET);
+		System.out.println("4. Insert new Batch");
+		System.out.println("5. Update Batch");
+		System.out.println("6. View all Batches");
+		System.out.println();
+		System.out.println(ConsoleColor.ANSI_GREEN_BACKGROUND+" Facalty "+ConsoleColor.ANSI_RESET);
+		System.out.println("7. Insert new Faculty");
+		System.out.println("8. Update Faculty");
+		System.out.println("9. View all Faculties");
+		System.out.println();
+		System.out.println(ConsoleColor.ANSI_GREEN_BACKGROUND+" Course Plan "+ConsoleColor.ANSI_RESET);
+		System.out.println("10. Insert new Course Plan");
+		System.out.println("11. Update Course Plan");
+		System.out.println("12. View all Course Plans");
+		System.out.println();
+		System.out.println(ConsoleColor.ANSI_GREEN_BACKGROUND+" Other "+ConsoleColor.ANSI_RESET);
+		System.out.println("13. Allocate faculty to a batch");
+		System.out.println("14. View the Day wise update of every batch");
+		System.out.println("15. Generate Report for every batch");
+		System.out.println("16. LogOut");
+		System.out.println(ConsoleColor.ANSI_GREEN+"Enter Option no. :"+ConsoleColor.ANSI_RESET);
 		
 		
 		int option = sc.nextInt();
 		
-		UpdateCourseDao dao = new UpdateCourseDaoImpl();
+		CourseDao dao = new CourseDaoImpl();
 		
 		if(option == 1) {
-			
 			try {
 				System.out.println(dao.insertNewCourse());
 			} catch (CourseException e) {
@@ -91,9 +114,13 @@ public class AdminDaoImpl implements AdminDao{
 		}else if(option == 2) {
 			dao.updateCourse();
 		}else if (option == 3) {
+			dao.viewCourse();
+		}
+		else if (option == 16) {
 			new Home().HomePage();
 		}else {
 			System.out.println(ConsoleColor.ANSI_RED+"Invaild Input, Try again"+ConsoleColor.ANSI_RESET);
+			AdminDashbord();
 		}
 	}
 
