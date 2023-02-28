@@ -1,4 +1,4 @@
-# eminent-rest-407
+# Course Monitoring System
 Course Monitoring System will keep the records of all the courses,batches,faculties and the daywise update for every batch. It will also help the Faculty Head to maintain the course plan .
 
 Domain Description:
